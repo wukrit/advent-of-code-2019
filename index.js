@@ -6,8 +6,8 @@ const formatNumber = num => (num < 10 ? "0" + num : num);
 const runFile = day => {
   const path = day + "/run.js";
   if (fs.existsSync(path)) {
-    console.log("--- Day " + day + " ---");
     exec("node " + path, (error, stdout, stderr) => {
+      console.log("--- Day " + day + " ---");
       console.log(stdout);
       console.error(stderr);
     });
