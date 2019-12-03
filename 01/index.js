@@ -1,11 +1,17 @@
 const fs = require("fs");
 
-const splitData = (data) => {
-  return data.split('\n').map(entry => parseInt(entry))
-}
+const parseInput = data => {
+  const arr = [];
+  const input = data.split("\n");
+  input.forEach(entry => {
+    if (parseInt(entry)) arr.push(parseInt(entry));
+  });
+  return arr;
+};
 
 fs.readFile("input.txt", "utf8", (error, data) => {
   if (error) throw error;
   // Solution goes here
-  console.log(splitData(data));
+  const input = parseInput(data);
+  for (let i = 0; i < input.length; i++) console.log(input[i]);
 });
