@@ -21,22 +21,17 @@ const processOp = ([opCode, x, y, location], input) => {
   return [value, location];
 };
 
-// Modify Corresponding Value of Input
-const runOp = ([value, location], input) => {
-  if (value === "End") return value;
-  input[location] = value;
-  return input;
-}
+// Process chunks of 4
+const chunk = (input, commandArr) => {
+  commandArr.push(input.slice(0, 4));
+  if (input.slice(4).length >= 4 && input[4] != 99) chunk(input.slice(4), commandArr);
+  return commandArr;
+};
 
 // Create list of op commands
 const commands = input => {
   const commandArr = []
-  const chunk = input => {
-    commandArr.push(input.slice(0, 4));
-    if (input.slice(4).length >= 4 && input[4] != 99) chunk(input.slice(4));
-    return;
-  };
-  chunk(input)
+  chunk(input, commandArr)
   return commandArr
 }
 
