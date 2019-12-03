@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 
 // Process text file and return array of integers
 const parseInput = data => {
@@ -25,7 +26,7 @@ const adder = (arr, func) => {
   return arr.reduce((sum, value) => (sum += func(value)), 0);
 };
 
-fs.readFile("input.txt", "utf8", (error, data) => {
+fs.readFile(path.join(__dirname, "input.txt"), "utf8", (error, data) => {
   if (error) throw error;
 
   const input = parseInput(data);
