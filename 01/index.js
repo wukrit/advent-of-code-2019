@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+// Process text file and return array of integers
 const parseInput = data => {
   const arr = [];
   const input = data.split("\n");
@@ -19,6 +20,7 @@ const calcTotalFuel = mass => {
   return 0;
 };
 
+// Sum a given array after performing a function on each value
 const adder = (arr, func) => {
   return arr.reduce((sum, value) => (sum += func(value)), 0);
 };
@@ -30,6 +32,7 @@ fs.readFile("input.txt", "utf8", (error, data) => {
   const sum1 = adder(input, calcFuel);
   const sum2 = adder(input, calcTotalFuel);
 
+  // Print answers to console 
   console.log("Part 1: ", sum1);
   console.log("Part 2: ", sum2);
 });
