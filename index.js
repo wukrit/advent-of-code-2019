@@ -4,7 +4,7 @@ const { exec } = require("child_process")
 const formatNumber = num => num < 10 ? "0" + num : num
 
 const runFile = day => {
-  const path = day + "/index.js"
+  const path = day + "/run.js"
   if (fs.existsSync(path)) {
     console.log("--- Day " + day + " ---")
     exec("node " + path, (error, stdout, stderr) => {
