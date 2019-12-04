@@ -63,9 +63,10 @@ fs.readFile(path.join(__dirname, "input.txt"), "utf8", (error, data) => {
   if (error) throw error;
 
   const input = parseInput(data);
-
+  // Part 1
   const inputPart1 = setNV(input, 12, 2);
   const outputPart1 = performOps(inputPart1, commands(inputPart1));
+  // Part 2
   const outPutPart2 = findCombo(input, 19690720);
 
   console.log("Part 1: ", outputPart1[0]);
