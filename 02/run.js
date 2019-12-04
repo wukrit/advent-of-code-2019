@@ -7,10 +7,12 @@ const parseInput = data => {
   return arr.map(value => parseInt(value));
 };
 
-// Restore "1202 Program Alarm"
-const restore1202 = input => {
-  input[1] = 12;
-  input[2] = 2;
+// Set Noun/Verb Combo
+const setNV = (input, noun, verb) => {
+  const newArr = [...input]
+  newArr[1] = noun;
+  newArr[2] = verb;
+  return newArr
 };
 
 // Process 4 Part Command
@@ -38,18 +40,25 @@ const commands = input => {
 
 // Perform operations on Input
 const performOps = (input, commands) => {
+  const newArr = [...input]
   for (entry of commands) {
-    const [value, location] = processOp(entry, input);
-    input[location] = value;
+    const [value, location] = processOp(entry, newArr);
+    newArr[location] = value;
   }
-  return input;
+  return newArr;
 };
+
+// Part 2, Test Noun/Verb Combos
+const findCombo = (input, target) => {
+
+}
 
 fs.readFile(path.join(__dirname, "input.txt"), "utf8", (error, data) => {
   if (error) throw error;
 
   const input = parseInput(data);
-  restore1202(input);
-  const output = performOps(input, commands(input));
-  console.log("Part 1: ", output[0]);
+  const inputPart1 = setNV(input, 12, 2);
+  const outputPart1 = performOps(inputPart1, commands(inputPart1));
+  console.log(input)
+  console.log("Part 1: ", outputPart1[0]);
 });
