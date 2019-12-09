@@ -29,10 +29,7 @@ const findCombinations = ([start, end]) => {
 
 // Find combinations for part 2
 const newCombos = combos => {
-  const newCombos = []
-  for (password of combos)
-    if (strictDouble(password)) newCombos.push(password);
-  return newCombos;
+  return combos.filter(password => strictDouble(password))
 }
 
 // Check all doubles against larger group
