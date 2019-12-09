@@ -27,4 +27,29 @@ const findCombinations = ([start, end]) => {
   return combos
 }
 
-console.log("Part 1: ", findCombinations(range).length)
+// Find combinations for part 2
+const newCombos = combos => {
+  const newCombos = []
+  for (password of combos)
+    if (strictDouble(password)) newCombos.push(password);
+  return newCombos;
+}
+
+// Check all doubles against larger group
+const strictDouble = num => {
+  const password = num.toString().split("");
+  let double = false;
+  for (let i = 1; i < password.length; i ++) {
+    if (password[i] == password[i - 1]
+      && password[i] != password[i + 1]
+      && password[i] != password[i - 2])
+        double = true;
+  }
+  return double;
+}
+
+const combos = findCombinations(range)
+const part2 = newCombos(combos)
+
+console.log("Part 1: ", combos.length)
+console.log("Part 2: ", part2.length)
