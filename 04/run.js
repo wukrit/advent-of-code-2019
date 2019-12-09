@@ -42,7 +42,7 @@ const strictDouble = num => {
 };
 
 const combos = findCombinations(range);
-const part2 = combos.filter(password => strictDouble(password));;
+const part2 = combos.filter(password => strictDouble(password));
 
 console.log("Part 1: ", combos.length);
 console.log("Part 2: ", part2.length);
