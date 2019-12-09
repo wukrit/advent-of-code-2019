@@ -75,6 +75,24 @@ const minDistance = intersections => {
   return minDist;
 };
 
+// Find the steps for an intersect
+const getSteps = (wire, targetCoord) => {
+  for (coord of wire) {
+    if (coord[0] == targetCoord[0] && coord[1] === targetCoord[1])
+      return wire.indexOf(coord);
+  }
+};
+
+// Get number of steps for each intersect
+const getMinSteps = (intersections, wire1, wire2) => {
+  let minSteps = Infinity;
+  for (coord of intersections) {
+    const steps = getSteps(wire1, coord) + getSteps(wire2, coord);
+    if (steps != 0 && steps < minSteps) minSteps = steps;
+  }
+  return minSteps;
+};
+
 fs.readFile(path.join(__dirname, "input.txt"), "utf8", (error, data) => {
   if (error) throw error;
 
@@ -84,4 +102,5 @@ fs.readFile(path.join(__dirname, "input.txt"), "utf8", (error, data) => {
   const intersections = findIntersections(wire1Coords, wire2Coords);
 
   console.log("Part 1: ", minDistance(intersections));
+  console.log("Part 2: ", getMinSteps(intersections, wire1Coords, wire2Coords));
 });
